@@ -1,0 +1,9 @@
+---
+- name: Get curl version
+  hosts: test
+  remote_user: root
+
+  tasks:
+    - name: Bash get version
+      shell: |
+        curl --version

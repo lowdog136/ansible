@@ -1,0 +1,37 @@
+---
+- name: Create docker project Nginx
+  hosts: testVPS
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Create folder 'docker project'
+      shell: |
+        mkdir /srv/docker-project
+
+    - name: Copy file docker-compose
+      ansible.builtin.copy:
+        src: /home/zooloo/docker-compose.yaml
+        dest: /srv/docker-project/docker-compose.yaml
+   
+    - name: Create folders from php
+      shell: |
+        mkdir -p /srv/docker-project/www/html
+
+    - name: Create folders from nginx
+      shell: |
+        mkdir -p /srv/docker-project/nginx
+
+    - name: Copy file index.php
+      ansible.builtin.copy:
+        src: /home/zooloo/index.php
+        dest: /srv/docker-project/www/html/index.php
+        
+    - name: Copy file default.conf
+      ansible.builtin.copy:
+        src: /home/zooloo/default.conf
+        dest: /srv/docker-project/nginx/default.conf
+        
+    - name: Start docker
+      shell: |
+        cd /srv/docker-project
+        docker compose up -d

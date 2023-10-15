@@ -1,0 +1,46 @@
+---
+- name: Install php - 8.2 version
+  gather_facts: false
+  hosts: test
+  remote_user: root
+
+  tasks:
+  - name: install epel-release
+    ansible.builtin.dnf:
+      name: epel-release
+      state: latest
+
+  - name: Import remi GPG key.
+    rpm_key:
+      key: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+      state: present
+
+  - name: Import EPEL GPG key.
+    rpm_key:
+      key: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
+      state: present
+      
+  - name: install remi
+    ansible.builtin.dnf:
+      name: 'http://rpms.remirepo.net/enterprise/remi-release-9.rpm'
+      state: present
+      
+  - name: install yum-utils
+    ansible.builtin.dnf:
+      name: epel-release
+      state: latest
+
+  - name: install dnf-utils
+    ansible.builtin.dnf:
+      name: dnf-utils
+      state: latest
+
+  - name: install php:remi-8.2
+    ansible.builtin.dnf:
+      name: php:remi-8.2
+      state: latest
+      
+  - name: install php-8.2
+    ansible.builtin.dnf:
+      name: php
+      state: latest

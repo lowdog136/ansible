@@ -1,0 +1,33 @@
+---
+- name: Install nginx - latest version
+  gather_facts: false
+  hosts: test
+  remote_user: root
+
+  tasks:
+  - name: install yum-utils
+    ansible.builtin.yum:
+      name: yum-utils
+      state: latest
+
+  - name: Copy file index.php
+    ansible.builtin.copy:
+      src: /home/zooloo/nginx.repo
+      dest: /etc/yum.repos.d/nginx.repo
+
+  - name: Enable nginx-mainline
+    shell: |
+      yum-config-manager --enable nginx-mainline
+
+  - name: Install the latest version nginx
+    ansible.builtin.yum:
+      name: nginx
+
+    notify: Start and enable nginx
+
+  handlers:
+    - name: Start and enable nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes

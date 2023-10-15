@@ -1,0 +1,10 @@
+---
+- name: Install Htop from testVPS
+  hosts: testVPS
+  remote_user: root
+
+  tasks:
+  - name: Ensure htop is at the latest version
+    ansible.builtin.yum:
+      name: htop
+      state: latest
