@@ -1,6 +1,5 @@
 ---
 - name: Install php - 8.2 version
-  gather_facts: false
   hosts: test
   remote_user: root
 
@@ -17,12 +16,12 @@
 
   - name: Import EPEL GPG key.
     rpm_key:
-      key: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
+      key: /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
       state: present
       
   - name: install remi
     ansible.builtin.dnf:
-      name: 'http://rpms.remirepo.net/enterprise/remi-release-9.rpm'
+      name: 'http://rpms.famillecollet.com/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm'
       state: present
       
   - name: install yum-utils
