@@ -1,6 +1,6 @@
 ---
 - name: Get curl version
-  hosts: test
+  hosts: all
   remote_user: root
 
   tasks:
