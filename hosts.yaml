@@ -1,0 +1,41 @@
+all:
+  children:
+    test:
+      hosts:
+        testVPS:
+          ansible_host: 192.168.31.17
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_rsa
+        testVPSAlma:
+          ansible_host: 192.168.31.213
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pub
+        testVPSAlmaReplica:
+          ansible_host: 192.168.31.232
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pub
+
+    MariaDBMaster:
+      hosts:
+        testVPSAlma:
+          ansible_host: 192.168.31.213 
+          ansible_port: 22 
+          ansible_user: root 
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pub
+
+    MariaDBReplica:
+      hosts:
+        testVPSAlma:
+          ansible_host: 192.168.31.213
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pu
+
+        testVPSAlmaReplica:
+          ansible_host: 192.168.31.232
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pu
