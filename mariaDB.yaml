@@ -23,3 +23,15 @@
         name: mariadb.service
         state: started
         enabled: yes
+
+    - name: copy config
+      ansible.builtin.copy:
+        src: mariadb/my.cnf
+        dest: /etc/my.cnf
+      notify: restart MariaDB
+
+  handlers:
+    - name: restart MariaDB
+      ansible.builtin.systemd:
+        name: mariadb.service
+        state: restarted
