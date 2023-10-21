@@ -4,15 +4,22 @@
   remote_user: root
 
   tasks:
-    - name: connect repository Maria DB
+    - name: connect repository
       ansible.builtin.get_url:
-      url: https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
-      dest: /tmp/
+        url: 'https://downloads.mariadb.com/MariaDB/mariadb_repo_setup'
+        dest: /tmp/
 
     - name: mariadb_repo_setup
       ansible.builtin.shell:
-        bash mariadb_repo_setup --mariadb-server-version=10.9
+        bash /tmp/mariadb_repo_setup --mariadb-server-version=10.9
 
     - name: Install MariaDB
       ansible.builtin.dnf:
-        list: [MariaDB-server, MariaDB-client, MariaDB-backup]
+        name: MariaDB-server, MariaDB-client, MariaDB-backup
+        state: latest
+
+    - name: enable and started MariaDB
+      ansible.builtin.systemd:
+        name: mariadb.service
+        state: started
+        enabled: yes
