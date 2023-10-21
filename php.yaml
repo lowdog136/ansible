@@ -21,7 +21,7 @@
       
   - name: install remi
     ansible.builtin.dnf:
-      name: 'http://rpms.famillecollet.com/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm'
+      name: 'http://rpms.remirepo.net/enterprise/remi-release-9.rpm'
       state: present
       
   - name: install yum-utils
