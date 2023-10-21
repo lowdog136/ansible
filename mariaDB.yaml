@@ -1,0 +1,18 @@
+---
+- name: Install maria DB 
+  hosts: test
+  remote_user: root
+
+  tasks:
+    - name: connect repository Maria DB
+      ansible.builtin.get_url:
+      url: https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+      dest: /tmp/
+
+    - name: mariadb_repo_setup
+      ansible.builtin.shell:
+        bash mariadb_repo_setup --mariadb-server-version=10.9
+
+    - name: Install MariaDB
+      ansible.builtin.dnf:
+        list: [MariaDB-server, MariaDB-client, MariaDB-backup]
