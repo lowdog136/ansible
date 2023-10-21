@@ -1,6 +1,6 @@
 ---
 - name: Install maria DB 
-  hosts: test
+  hosts: MariaDBMaster
   remote_user: root
 
   tasks:
