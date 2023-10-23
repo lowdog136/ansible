@@ -1,0 +1,15 @@
+---
+- name: Create maria DB replication user
+  hosts: MariaDBMaster
+  remote_user: root
+
+  tasks:
+    - name: Create database user with name 'repl_user' and password '**' with all database privileges
+      mysql_user:
+        name: repl_user
+        password: k7LicUhZ9mKjXCyJqIAgJUSyT8BEEB9JEu9
+        priv: "*.*:REPLICATION CLIENT"
+        state: present
+
+
+
