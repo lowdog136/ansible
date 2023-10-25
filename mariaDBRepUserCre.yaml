@@ -4,12 +4,14 @@
   remote_user: root
 
   tasks:
+    - name: install python3-mysqlclient
+      ansible.builtin.dnf:
+        name: python3-mysqlclient
+        state: latest
+
     - name: Create database user with name 'repl_user' and password '**' with all database privileges
       mysql_user:
         name: repl_user
         password: k7LicUhZ9mKjXCyJqIAgJUSyT8BEEB9JEu9
         priv: "*.*:REPLICATION CLIENT"
         state: present
-
-
-
