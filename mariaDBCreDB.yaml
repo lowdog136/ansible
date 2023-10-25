@@ -1,0 +1,12 @@
+---
+- name: Create test database 
+  hosts: MariaDBMaster
+  remote_user: root
+
+  tasks:
+    - name: Create new databases with names 'foo' and 'bar'
+      community.mysql.mysql_db:
+        name:
+        - foo
+        - bar
+        state: present
