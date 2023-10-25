@@ -1,0 +1,11 @@
+---
+- name: Create test database 
+  hosts: MariaDBMaster
+  remote_user: root
+
+  tasks:
+    - name: Dump all databases to hostname.sql
+      community.mysql.mysql_db:
+        state: dump
+        name: all
+        target: /tmp/dump.sql
