@@ -1,15 +1,15 @@
 ---
-- name: Install maria DB 
+- name: Install maria DB
   hosts: MariaDBReplica
   remote_user: root
 
   tasks:
-    - name: connect repository
+    - name: Connect repository
       ansible.builtin.get_url:
         url: 'https://downloads.mariadb.com/MariaDB/mariadb_repo_setup'
         dest: /tmp/
 
-    - name: mariadb_repo_setup
+    - name: Mariadb_repo_setup
       ansible.builtin.shell:
         bash /tmp/mariadb_repo_setup --mariadb-server-version=10.9
 
@@ -18,20 +18,20 @@
         name: MariaDB-server, MariaDB-client, MariaDB-backup
         state: latest
 
-    - name: enable and started MariaDB
+    - name: Enable and started MariaDB
       ansible.builtin.systemd:
         name: mariadb.service
         state: started
-        enabled: yes
+        enabled: true
 
-    - name: copy config
+    - name: Copy config
       ansible.builtin.copy:
-        src: mariadb/replica/my.cnf
+        src: /home/zooloo/Dropbox/andibleGitHub/ansible/files/mariaDB/conf/slave/my.cnf
         dest: /etc/my.cnf
       notify: restart MariaDB
 
   handlers:
-    - name: restart MariaDB
+    - name: Restart MariaDB
       ansible.builtin.systemd:
         name: mariadb.service
         state: restarted
