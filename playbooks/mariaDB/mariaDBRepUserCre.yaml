@@ -7,7 +7,7 @@
     - name: Install python3-mysqlclient
       ansible.builtin.dnf:
         name: python3-mysqlclient
-        state: latest
+        state: present
 
     - name: Create database user
       community.mysql.mysql_user:
