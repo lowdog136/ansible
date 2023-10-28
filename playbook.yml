@@ -1,6 +1,7 @@
-- name: Test PING.  
-  hosts: all  
-  become: yes
-  tasks:  
-    - name: ping
-      ping:
+---
+  - name: Test 
+    hosts: all
+    become: true
+    tasks:
+      - name: Ping all hosts
+        ansible.builtin.ping:
