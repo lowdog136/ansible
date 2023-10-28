@@ -1,5 +1,5 @@
 ---
-- name: Create test database 
+- name: Create test database
   hosts: MariaDBMaster
   remote_user: root
 

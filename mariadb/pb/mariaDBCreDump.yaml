@@ -4,8 +4,11 @@
   remote_user: root
 
   tasks:
-    - name: Dump all databases to hostname.sql
+    - name: Dump databases to testVPSAlma.sql
       community.mysql.mysql_db:
+        login_user: root
+        login_password: 1sp8yjELann29RWmC4Et
         state: dump
-        name: all
-        target: /tmp/dump.sql
+        name: foo, bar
+        target: /tmp/dump.sql.gz
+        pipefail: true
