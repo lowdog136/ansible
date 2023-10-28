@@ -1,5 +1,5 @@
 ---
-  - name: Test 
+  - name: Test
     hosts: all
     become: true
     tasks:
