@@ -5,7 +5,7 @@
   remote_user: root
 
   tasks:
-  - name: install yum-utils
+  - name: Install yum-utils
     ansible.builtin.yum:
       name: yum-utils
       state: latest
@@ -16,7 +16,7 @@
       dest: /etc/yum.repos.d/nginx.repo
 
   - name: Enable nginx-mainline
-    shell: |
+    ansible.builtin.shell: |
       yum-config-manager --enable nginx-mainline
 
   - name: Install the latest version nginx
@@ -27,7 +27,7 @@
 
   handlers:
     - name: Start and enable nginx
-      systemd:
+      ansible.builtin.systemd:
         name: nginx
         state: started
         enabled: yes
