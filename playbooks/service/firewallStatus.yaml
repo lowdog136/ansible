@@ -1,9 +1,8 @@
 ---
-- name: Get curl version
+- name: Get firewalld status
   hosts: test
   remote_user: root
 
   tasks:
-    - name: Bash get version
-      shell: |
-        systemctl status firewalld
+    - name: Get status firewalld
+      ansible.builtin.shell: systemctl status firewalld

@@ -30,6 +30,11 @@
         dest: /etc/my.cnf
       notify: restart MariaDB
 
+    - name: Install python3-mysqlclient
+      ansible.builtin.dnf:
+        name: python3-PyMySQL # python3-mysqlclient
+        state: latest
+
   handlers:
     - name: Restart MariaDB
       ansible.builtin.systemd:
