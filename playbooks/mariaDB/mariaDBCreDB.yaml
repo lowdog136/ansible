@@ -2,7 +2,7 @@
 - name: Create test database
   hosts: MariaDBMaster
   remote_user: root
-  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/mariaDBMaster.yml
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/mariaDB.yml
 
   tasks:
     - name: Create new databases with names 'foo' and 'bar'
@@ -12,7 +12,7 @@
         login_user:
           root
         login_password:
-          "{{ mariaDB_root_password }}"
+          "{{ mariaDBMaster_root_password }}"
         name:
         - foo1
         - bar2

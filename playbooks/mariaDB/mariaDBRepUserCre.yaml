@@ -2,14 +2,14 @@
 - name: Create maria DB replication user
   hosts: MariaDBMaster
   remote_user: root
-  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/mariaDBMaster.yml
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/mariaDB.yml
 
   tasks:
     - name: Create database user
       community.mysql.mysql_user:
         login_unix_socket: /var/lib/mysql/mysql.sock
         login_user: 'root'
-        login_password: "{{ mariaDB_root_password }}"
-        name: "{{ remote_user_name }}"
-        password: "{{ remote_user_password }}"
+        login_password: "{{ mariaDBMaster_root_password }}"
+        name: "{{ repl_user_name }}"
+        password: "{{ repl_user_password }}"
         priv: "*.*:REPLICATION CLIENT"

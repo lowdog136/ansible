@@ -1,18 +1,18 @@
 ---
-- name: Create dump
-  hosts: MariaDBMaster
+- name: Load dump
+  hosts: MariaDBReplica
   remote_user: root
   vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/mariaDB.yml
 
   tasks:
-    - name: Dump databases to testVPSAlma.sql
+    - name: Load dump
       community.mysql.mysql_db:
         login_unix_socket:
           /var/lib/mysql/mysql.sock
         login_user: root
         login_password:
-          "{{ mariaDBMaster_root_password }}"
-        state: dump
+          "{{ mariaDBSlave_root_password }}"
+        state: import
         name: all
         target: /tmp/dump.sql.gz
         pipefail: true

@@ -35,8 +35,8 @@
         name: python3-PyMySQL # python3-mysqlclient
         state: latest
 
-  handlers:
-    - name: Restart MariaDB
-      ansible.builtin.systemd:
-        name: mariadb.service
-        state: restarted
+#  handlers:
+#    - name: Restart MariaDB
+#      ansible.builtin.systemd:
+#        name: mariadb.service
+#        state: restarted
