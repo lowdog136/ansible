@@ -1,0 +1,7 @@
+---
+  - name: Swap create
+    hosts: test
+    become: true
+    tasks:
+      - name: Ping all hosts
+        ansible.builtin.ping:
