@@ -1,0 +1,10 @@
+---
+- name: Get grep log
+  hosts: test
+  remote_user: root
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/grepMail.yml
+
+  tasks:
+    - name: Get grep log
+      ansible.builtin.shell:
+        echo "{{ valueSearch }}" > /tmp/Data.log
