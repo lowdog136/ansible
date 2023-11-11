@@ -1,7 +1,6 @@
 ---
-  - name: Test
-    hosts: all
-    remote_user: zooloo
+  - name: Swap create
+    hosts: test
     become: true
     tasks:
       - name: Ping all hosts
