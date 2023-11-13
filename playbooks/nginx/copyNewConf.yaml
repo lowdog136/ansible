@@ -1,0 +1,29 @@
+---
+- name: Copy new config
+  gather_facts: false
+  hosts: test
+  remote_user: root
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/nginx/nginxVars.yml
+
+  tasks:
+  - name: Copy file nginx.conf
+    ansible.builtin.copy:
+      src: "{{ repoPath }}"
+      dest: /etc/yum.repos.d/nginx.repo
+
+  - name: Enable nginx-mainline
+    ansible.builtin.shell: |
+      yum-config-manager --enable nginx-mainline
+
+  - name: Install the latest version nginx
+    ansible.builtin.yum:
+      name: nginx
+
+    notify: Start and enable nginx
+
+  handlers:
+    - name: Start and enable nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: started
+        enabled: yes
