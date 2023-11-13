@@ -8,7 +8,7 @@
   tasks:
   - name: Copy file nginx.conf
     ansible.builtin.copy:
-      src: "{{ repoPath }}"
+      src: "{{ newConfPath }}"
       dest: /etc/yum.repos.d/nginx.repo
 
   - name: Enable nginx-mainline
