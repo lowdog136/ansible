@@ -3,6 +3,7 @@
   gather_facts: false
   hosts: test
   remote_user: root
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/nginx/nginxVars.yml
 
   tasks:
   - name: Install yum-utils
@@ -12,7 +13,7 @@
 
   - name: Copy file index.php
     ansible.builtin.copy:
-      src: /home/zooloo/nginx.repo
+      src: "{{ repoPath }}"
       dest: /etc/yum.repos.d/nginx.repo
 
   - name: Enable nginx-mainline
