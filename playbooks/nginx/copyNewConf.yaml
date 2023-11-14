@@ -9,15 +9,12 @@
   - name: Copy file nginx.conf
     ansible.builtin.copy:
       src: "{{ newConfPath }}"
-      dest: /etc/yum.repos.d/nginx.repo
+      dest: /etc/nginx/conf.d/
 
-  - name: Enable nginx-mainline
-    ansible.builtin.shell: |
-      yum-config-manager --enable nginx-mainline
-
-  - name: Install the latest version nginx
-    ansible.builtin.yum:
-      name: nginx
+  - name: Copy file index.html
+    ansible.builtin.copy:
+      src: "{{ newIndexPath }}"
+      dest: /usr/share/nginx/html/
 
     notify: Start and enable nginx
 
