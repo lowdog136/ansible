@@ -3,3 +3,9 @@
       ansible.builtin.systemd:
         name: mariadb.service
         state: restarted
+
+    - name: Start and enable php-8.2
+      ansible.builtin.systemd:
+        name: php-fpm.service
+        state: started
+        enabled: yes
