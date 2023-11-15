@@ -3,43 +3,60 @@
   hosts: test
   remote_user: root
 
-  tasks:
-  - name: install epel-release
-    ansible.builtin.dnf:
-      name: epel-release
-      state: latest
+  tasks: 
+    - name: Adding Remi repo pgp keys
+      ansible.builtin.get_url:
+        url: https://rpms.remirepo.net/enterprise/9/RPM-GPG-KEY-remi
+        dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
+    
+    - name: Add remi repo 
+      yum_repository: 
+        name: remi
+        description: Remi repo for Enterprise Linux 9
+        mirrorlist: http://cdn.remirepo.net/enterprise/9/remi/$basearch/mirror
+        enabled: yes
+        gpgcheck: yes
+        repo_gpgcheck: yes
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
 
-  - name: Import remi GPG key
-    ansible.builtin.rpm_key:
-      key: http://rpms.remirepo.net/RPM-GPG-KEY-remi
-      state: present
+    - name: Add remi-modular repo
+      yum_repository:
+        name: remi-modular
+        description: Remi's Modular repository for Enterprise Linux 9 - $basearch
+        mirrorlist: http://cdn.remirepo.net/enterprise/9/modular/$basearch/mirror
+        enabled: yes
+        gpgcheck: yes
+        repo_gpgcheck: yes
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
 
-  - name: Import EPEL GPG key.
-    rpm_key:
-      key: /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
-      state: present
-      
-  - name: install remi
-    ansible.builtin.rpm_key:
-      name: 'http://rpms.remirepo.net/enterprise/remi-release-9.2.rpm'
-      state: present
-      
-  - name: install yum-utils
-    ansible.builtin.dnf:
-      name: epel-release
-      state: latest
+    - name: Adding remi-safe repo
+      yum_repository:
+        name: remi-safe 
+        description: remi safe repository for Enterprise Linux 9 - $basearch
+        mirrorlist: http://cdn.remirepo.net/enterprise/9/modular/$basearch/mirror
+        enabled: yes
+        gpgcheck: yes
+        repo_gpgcheck: yes
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9
 
-  - name: install dnf-utils
-    ansible.builtin.dnf:
-      name: dnf-utils
-      state: latest
+    - name: install dnf-utils
+      ansible.builtin.dnf:
+        name: dnf-utils
+        state: latest
 
-  - name: install php:remi-8.2
-    ansible.builtin.dnf:
-      name: php:remi-8.2
-      state: latest
-      
-  - name: install php-8.2
-    ansible.builtin.dnf:
-      name: php
-      state: latest
+    - name: Enable php 8.2 remi repo
+      ansible.builtin.shell: dnf module enable php:remi-8.2 -y
+
+    - name: install php-8.2
+      ansible.builtin.dnf:
+        name: php
+        state: latest
+
+      notify: Start and enable php-8.2
+
+  handlers:
+    - name: Start and enable php-8.2
+      ansible.builtin.systemd:
+        name: php-fpm
+        state: started
+        enabled: yes
