@@ -7,7 +7,7 @@
 
   tasks:
   - name: Install yum-utils
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: yum-utils
       state: latest
 
