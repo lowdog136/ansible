@@ -21,7 +21,12 @@
       src: "{{ newIndexPath }}"
       dest: /var/www/html/
 
-    notify: Restart php-fpm
+    notify:
+      - Restart php-fpm
+
+  - name: Restart nginx
+    ansible.builtin.shell: |
+      systemctl restart nginx
 
   handlers:
     - name: Restart php-fpm
