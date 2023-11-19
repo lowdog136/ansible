@@ -1,6 +1,6 @@
 ---
 - name: Install docker in Rocky
-  hosts: testVPS
+  hosts: test
   gather_facts: false
   become: true
   tasks:
