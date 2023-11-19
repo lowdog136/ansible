@@ -1,0 +1,2 @@
+nginxDockerComposeFilePathSrc: /home/zooloo/Dropbox/andibleGitHub/ansible/files/docker/nginx/docker-compose.yaml
+lempDockerComposeFilePathSrc: /home/zooloo/Dropbox/andibleGitHub/ansible/files/docker/LEMP/docker-compose.yaml
