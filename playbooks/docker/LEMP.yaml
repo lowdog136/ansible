@@ -1,0 +1,41 @@
+---
+- name: Create docker project LEMP
+  hosts: test
+  gather_facts: false
+  become: true
+  vars_files:
+    - /home/zooloo/Dropbox/andibleGitHub/ansible/vars/docker/main.yml
+    - /home/zooloo/Dropbox/andibleGitHub/ansible/vars/php-fpm/php-fpmVars.yml
+
+  tasks:
+    - name: Create folder 'docker project'
+      ansible.builtin.shell: |
+        mkdir /srv/docker-project
+
+    - name: Copy file docker-compose
+      ansible.builtin.copy:
+        src: "{{ lempDockerComposeFilePathSrc }}"
+        dest: /srv/docker-project/docker-compose.yaml
+
+    - name: Create folders from php
+      ansible.builtin.shell: |
+        mkdir -p /srv/docker-project/www/html
+
+    - name: Create folders from nginx
+      ansible.builtin.shell: |
+        mkdir -p /srv/docker-project/nginx
+
+    - name: Copy file index.php
+      ansible.builtin.copy:
+        src: "{{ newIndexPath }}"
+        dest: /srv/docker-project/www/html/index.php
+
+    - name: Copy file default.conf
+      ansible.builtin.copy:
+        src: "{{ newConfPath }}"
+        dest: /srv/docker-project/nginx/default.conf
+
+    - name: Start docker
+      ansible.builtin.shell: |
+        cd /srv/docker-project
+        docker compose up -d
