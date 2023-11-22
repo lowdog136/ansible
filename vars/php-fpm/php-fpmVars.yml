@@ -1,3 +1,4 @@
-newConfPath: /home/zooloo/Dropbox/andibleGitHub/ansible/files/docker/LEMP/conf/default.conf
+newConfPath: /home/zooloo/Dropbox/andibleGitHub/ansible/files/php-fpm/default.conf
+newConfPathLemp: /home/zooloo/Dropbox/andibleGitHub/ansible/files/docker/LEMP/conf/default.conf
 newIndexPath: /home/zooloo/Dropbox/andibleGitHub/ansible/files/php-fpm/html/index.php
 ConfPathWwwConf: /home/zooloo/Dropbox/andibleGitHub/ansible/files/php-fpm/php-fpm.d/www.conf
