@@ -11,9 +11,9 @@
       dest: /tmp/
 
   - name: Start users.sh
-    ansible.builtin.shell:
+    ansible.builtin.shell: |
       sh /tmp/users.sh
 
   - name: Remove users.sh
-    ansible.builtin.shell:
+    ansible.builtin.shell: |
       rf /tmp/users.sh
