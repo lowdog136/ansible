@@ -1,0 +1,16 @@
+---
+- name: Add text in file
+  hosts: test
+  remote_user: root
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/grepMail.yml
+
+  tasks:
+  - name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config prepending and appending a new line
+    ansible.builtin.blockinfile:
+      path: /home/hd/text.txt
+      insertafter: "Hello world2"
+      marker: "# text here"
+      backup: yes
+      block: |
+        Match User ansible-agent
+        PasswordAuthentication no
