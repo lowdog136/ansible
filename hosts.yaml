@@ -55,3 +55,11 @@ all:
           ansible_port: 22
           ansible_user: 'root'
           ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pub
+
+    webzilla:
+      hosts:
+        mailWZ:
+          ansible_host: 78.140.179.180
+          ansible_port: 22
+          ansible_user: 'hd'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/hd-wzilla
