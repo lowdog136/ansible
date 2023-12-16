@@ -1,15 +1,18 @@
 ---
 - name: Amavisd DKIM generation
-  hosts: test
-  remote_user: root
+  hosts: mailWZ
+  remote_user: hd
   vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/service/main.yaml
 
   tasks:
     - name: Generation pem file
-      ansible.builtin.shell: sudo amavisd -c /etc/amavisd/amavisd.conf genrsa /var/lib/dkim/"{{ domainName }}".pem 1024
+      ansible.builtin.shell: sudo amavisd -c /etc/amavisd/amavisd.conf genrsa /var/lib/dkim/{{ domainName }}.pem 1024
 
     - name: Change chown
-      ansible.builtin.shell: sudo chown amavis:amavis /var/lib/dkim/"{{ domainName }}".pem
-
-    - name: Change chmod
-      ansible.builtin.shell: sudo chmod 0400 /var/lib/dkim/"{{ domainName }}".pem
+      become: true
+      ansible.builtin.file:
+        path: /var/lib/dkim/{{ domainName }}.pem
+        owner: amavis
+        group: amavis
+        state: touch
+        mode: 400
