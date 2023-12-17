@@ -15,18 +15,27 @@
         owner: amavis
         group: amavis
         state: touch
-        mode: 400
+        mode: 0400
 
-    - name: Insert/Update /etc/amavisd/amavisd.conf. Add new line {{ domainName }}. Block - Add dkim_key here.
+    - name: Insert/Update /etc/amavisd/amavisd.conf. Block - Add dkim_key here.
       become: true
       ansible.builtin.lineinfile:
         path: /etc/amavisd/amavisd.conf
         insertafter: "# Add dkim_key here."
         line: dkim_key('{{ domainName }}', 'dkim', '/var/lib/dkim/{{ domainName }}.pem');
 
-    - name: Insert/Update /etc/amavisd/amavisd.conf. Add new line {{ domainName }}. Block - Per-domain dkim key
+    - name: Insert/Update /etc/amavisd/amavisd.conf. Block - Per-domain dkim key
       become: true
       ansible.builtin.lineinfile:
         path: /etc/amavisd/amavisd.conf
-        insertafter: "# Per-domain dkim key"
-        line: '"{{ domainName }}"  => { d => "{{ domainName }}", a => ''rsa-sha256'', ttl => 10*24*3600 };'
+        insertafter: '# Per-domain dkim key'
+        line: '     "{{ domainName }}"  => { d => "{{ domainName }}", a => ''rsa-sha256'', ttl => 10*24*3600 },'
+
+      notify: Restart amavisd
+
+  handlers:
+    - name: Restart amavisd
+      become: true
+      ansible.builtin.systemd:
+        name: amavisd
+        state: restarted
