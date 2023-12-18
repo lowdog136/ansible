@@ -9,3 +9,9 @@
         name: php-fpm.service
         state: started
         enabled: yes
+
+    - name: Restart amavisd
+      become: true
+      ansible.builtin.systemd:
+        name: amavisd
+        state: restarted
