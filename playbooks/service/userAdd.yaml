@@ -1,0 +1,19 @@
+---
+- name: User create
+  hosts: test
+  remote_user: root
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/service/main.yaml
+
+  tasks:
+  - name: Copy users.sh
+    ansible.builtin.copy:
+      src: "{{ shPathUserAdd }}"
+      dest: /tmp/
+
+  - name: Start users.sh
+    ansible.builtin.shell: |
+      sh /tmp/userAdd.sh
+
+  - name: Remove users.sh
+    ansible.builtin.shell: |
+      rf /tmp/userAdd.sh

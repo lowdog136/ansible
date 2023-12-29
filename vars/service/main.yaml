@@ -1,2 +1,3 @@
 shPath: /home/zooloo/Dropbox/andibleGitHub/ansible/files/service/users.sh
+shPathUserAdd: /home/zooloo/Dropbox/andibleGitHub/ansible/files/service/userAdd.sh
 domainName: test.com
