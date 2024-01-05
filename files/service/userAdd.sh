@@ -1,6 +1,6 @@
 #/bin/bash
 arr=(
-"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEjGEPeysnwZOK2cN0TJTHIM6PHR2PVm15jsZmW4CvLt ns@webzilla"
+"ns ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEjGEPeysnwZOK2cN0TJTHIM6PHR2PVm15jsZmW4CvLt ns@webzilla"
 )
 for index in ${!arr[*]}
 do
@@ -16,5 +16,7 @@ do
     sudo su $LOGIN -c "echo $KEY > /home/$LOGIN/.ssh/authorized_keys"
     sudo echo "$LOGIN ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/wzilla-users 
 done
+sudo chown root:root /tmp/wzilla-users
+sudo mv /tmp/wzilla-users /etc/sudoers.d/wzilla-users
 sudo chown root:root /etc/sudoers.d/wzilla-users
 sudo chmod 440 /etc/sudoers.d/wzilla-users
