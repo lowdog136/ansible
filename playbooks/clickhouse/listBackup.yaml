@@ -1,0 +1,14 @@
+---
+- name: List all backups clickhouse use Docker
+  hosts: testVPS
+  gather_facts: false
+  become: true
+  tasks:
+    - name: List all backups
+      shell: |
+        docker run -u $(id -u clickhouse) --rm -it --network host -v "/var/lib/clickhouse:/var/lib/clickhouse" \
+        -e CLICKHOUSE_PASSWORD="" \
+        -e remote_storage="none" \
+        -e backups_to_keep_local="0"  \
+        -e log_level="info"  \
+        altinity/clickhouse-backup list | grep regular
