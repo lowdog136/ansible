@@ -1,0 +1,26 @@
+---
+- name: Install postgreSQL
+  hosts: almaQCow
+  remote_user: root
+
+  tasks:
+    - name: Add repository postgreSQL
+      ansible.builtin.shell:
+        dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+    - name: Install postgreSQL
+      ansible.builtin.dnf:
+        name: postgresql16-server, python3-psycopg2
+        state: latest
+        update_cache: true
+
+    - name: Create the cluster
+      ansible.builtin.command:
+        cmd: postgresql-16-setup initdb
+        creates: /var/lib/pgsql/data/PG_VERSION
+
+    - name: Start and enable the service
+      ansible.builtin.systemd:
+        name: postgresql-16
+        state: started
+        enabled: true
