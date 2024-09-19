@@ -1,0 +1,14 @@
+---
+- name: Bareos docker compose up
+  hosts: testVPSAlmaReplica
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Docker compose up
+      community.docker.docker_compose_v2:
+        project_src: /opt/bareos
+      register: output
+
+    - name: Show result
+      ansible.builtin.debug:
+        var: output
