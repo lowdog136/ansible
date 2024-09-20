@@ -1,0 +1,22 @@
+---
+- name: Install postgreSQL
+  hosts: almaQCow
+  remote_user: root
+
+  tasks:
+    - name: Create the databases
+      community.postgresql.postgresql_db:
+        name: "TestBase"
+        encoding: "UTF-8"
+      become: true
+      become_user: postgresql
+
+    - name: Create the users
+      community.postgresql.postgresql_user:
+        db: "TestBase"
+        name: "Ololosh"
+        password: "Ololosh!dsFD_2er2"
+      become: true
+      become_user: postgres
+      environment:
+        PGOPTIONS: "-c password_encryption=scram-sha-256"
