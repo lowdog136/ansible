@@ -1,0 +1,11 @@
+ansible -i hosts.yaml PostgreSQLDBReplica -m service -a "name=postgresql state=stopped"
+
+remove 
+ansible -i hosts.yaml PostgreSQLDBReplica -m dnf -a "name=postgresql state=absent"
+
+
+ansible-playbook playbooks/postgreSQL/Install.yaml -i hosts.yaml -v 
+
+
+dnf clean metadata
+
