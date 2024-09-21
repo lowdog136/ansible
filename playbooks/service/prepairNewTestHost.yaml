@@ -1,0 +1,15 @@
+---
+- name: Prepair new test host after Install
+  hosts: PostgreSQLDBReplica
+  remote_user: root
+
+  tasks:
+    - name: Install mc is at the latest version
+      ansible.builtin.dnf:
+        name: mc
+        state: latest
+
+    - name: Install zsh is at the latest version
+      ansible.builtin.dnf:
+        name: zsh
+        state: latest
