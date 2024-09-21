@@ -4,8 +4,11 @@ remove
 ansible -i hosts.yaml PostgreSQLDBReplica -m dnf -a "name=postgresql state=absent"
 
 
+ansible -i hosts.yaml PostgreSQLDBReplica -m dnf -a "name=zsh state=latest"
+
 ansible-playbook playbooks/postgreSQL/Install.yaml -i hosts.yaml -v 
 
+ansible-playbook playbooks/postgreSQL/CreateBase.yaml -i hosts.yaml -v 
 
 dnf clean metadata
 

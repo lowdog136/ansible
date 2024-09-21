@@ -6,7 +6,7 @@
   tasks:
     - name: Install postgreSQL
       ansible.builtin.dnf:
-        name: postgresql-server, python3-psycopg2
+        name: postgresql, postgresql-server, python3-psycopg2
         state: latest
         update_cache: true
 

@@ -31,6 +31,18 @@ all:
           ansible_user: 'root'
           ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
           ansible_python_interpreter: "/usr/bin/python3"
+        almaPG:
+          ansible_host: 192.168.31.155
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
+          ansible_python_interpreter: "/usr/bin/python3"
+        almaPGRep:
+          ansible_host: 192.168.31.247
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
+          ansible_python_interpreter: "/usr/bin/python3"
         testVPSAnsible:
           ansible_host: 192.168.31.224
           ansible_port: 22
@@ -70,14 +82,14 @@ all:
 
     PostgreSQLDBReplica:
       hosts:
-        almaQCow:
-          ansible_host: 192.168.31.188
+        almaPG:
+          ansible_host: 192.168.31.155
           ansible_port: 22
           ansible_user: 'root'
           ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
           ansible_python_interpreter: "/usr/bin/python3"
-        almaQCowRep:
-          ansible_host: 192.168.31.243
+        almaPGRep:
+          ansible_host: 192.168.31.247
           ansible_port: 22
           ansible_user: 'root'
           ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
