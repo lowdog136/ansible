@@ -6,9 +6,16 @@
   tasks:
     - name: Create backup
       shell: |
-        docker run -u $(id -u clickhouse) --rm -it --network host -v "/var/lib/clickhouse:/var/lib/clickhouse" \
-        -e CLICKHOUSE_PASSWORD="" \
-        -e remote_storage="none" \
-        -e backups_to_keep_local="0"  \
-        -e log_level="info"  \
-        altinity/clickhouse-backup create
+        docker run -u $(id -u clickhouse) --rm -it --network host -v "/var/lib/clickhouse:/var/lib/clickhouse" \    
+          -e REMOTE_STORAGE="s3" \
+          -e CLICKHOUSE_PASSWORD="" \
+          -e S3_BUCKET="acl-test-bucket" \
+          -e S3_ENDPOINT="http://alma-s3:8333" \
+          -e S3_ACCESS_KEY="asfkm1230sdf32f2" \
+          -e S3_SECRET_KEY="d2d1ldafmKLAKEMD120ekm21" \
+          -e S3_DISABLE_SSL="true" \
+          -e S3_FORCE_PATH_STYLE="true" \
+          -e WATCH_INTERVAL="30m" \
+          -e FULL_INTERVAL="1h" \
+          -e BACKUPS_TO_KEEP_REMOTE="2" \
+          altinity/clickhouse-backup create_remote

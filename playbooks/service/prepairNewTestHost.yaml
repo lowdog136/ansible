@@ -13,3 +13,19 @@
       ansible.builtin.dnf:
         name: zsh
         state: latest
+
+    - name: Install git is at the latest version
+      ansible.builtin.dnf:
+        name: git
+        state: latest
+
+    - name: Install vim is at the latest version
+      ansible.builtin.dnf:
+        name: vim
+        state: latest
+
+    - name: Firewalld disable
+      ansible.builtin.systemd:
+        name: Firewalld
+        state: stopped
+        enabled: false
