@@ -1,4 +1,5 @@
-shPath: /home/zooloo/Dropbox/andibleGitHub/ansible/files/service/users.sh
-shPathUserAdd: /home/zooloo/Dropbox/andibleGitHub/ansible/files/service/userAdd.sh
-shPathSecUpdChk: /home/zooloo/Dropbox/andibleGitHub/ansible/files/service/securityUpdateCheck.sh
+shPath: /home/zooloo/Dropbox/_ansible/ansible/files/service/users.sh
+shPathUserAdd: /home/zooloo/Dropbox/_ansible/ansible/files/service/userAdd.sh
+shPathSecUpdChk: /home/zooloo/Dropbox/_ansible/ansible/files/service/securityUpdateCheck.sh
 domainName: test.com
+blockUser: zooloo

@@ -1,0 +1,10 @@
+---
+- name: Block user in system
+  hosts: almaPG
+  remote_user: root
+  vars_files: /home/zooloo/Dropbox/_ansible/ansible/vars/service/main.yaml
+
+  tasks:
+    - name: Block user
+      shell: |
+        usermod -e -1 -U {{ blockUser }} && chage -l {{ blockUser }}
