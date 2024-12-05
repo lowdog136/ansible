@@ -2,7 +2,7 @@
 - name: User create
   hosts: test
   remote_user: root
-  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/service/main.yaml
+  vars_files: /home/zooloo/Dropbox/_ansible/ansible/vars/service/main.yaml
 
   tasks:
   - name: Copy users.sh
