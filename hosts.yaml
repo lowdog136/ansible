@@ -8,11 +8,30 @@ all:
           ansible_user: 'root'
           ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
           ansible_python_interpreter: "/usr/bin/python3"
-        testVPSAlma:
-          ansible_host: 192.168.31.47
+        alma-pg-one.pve.zooloo.home:
+          ansible_host: 192.168.31.154
           ansible_port: 22
           ansible_user: 'root'
-          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519.pub
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
+          ansible_python_interpreter: "/usr/bin/python3"
+        bareos.pve.zooloo.home:
+          ansible_host: 192.168.31.55
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
+          ansible_python_interpreter: "/usr/bin/python3"
+        gitlab.pve.zooloo.home:
+          ansible_host: 192.168.31.117
+          ansible_port: 2222
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
+          ansible_python_interpreter: "/usr/bin/python3"
+        open-hands.pve.zooloo.home:
+          ansible_host: 192.168.31.193
+          ansible_port: 22
+          ansible_user: 'root'
+          ansible_ssh_private_key_file: /home/zooloo/.ssh/id_ed25519
+          ansible_python_interpreter: "/usr/bin/python3"
         testVPSAlmaReplica:
           ansible_host: 192.168.31.213
           ansible_port: 22

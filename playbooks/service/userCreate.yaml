@@ -1,19 +1,19 @@
 ---
 - name: User create
-  hosts: test
+  hosts: bareos.pve.zooloo.home
   remote_user: root
   vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/service/main.yaml
 
   tasks:
-  - name: Copy users.sh
+  - name: Copy file script
     ansible.builtin.copy:
-      src: "{{ shPath }}"
+      src: /home/zooloo/Dropbox/_ansible/ansible/files/service/users.sh
       dest: /tmp/
 
-  - name: Start users.sh
+  - name: Start  file script
     ansible.builtin.shell: |
       sh /tmp/users.sh
 
-  - name: Remove users.sh
+  - name: Remove  file script
     ansible.builtin.shell: |
       rf /tmp/users.sh

@@ -1,6 +1,6 @@
 ---
-- name: Install docker in Rocky
-  hosts: alma-s3
+- name: Install docker in redhat systems
+  hosts: open-hands.pve.zooloo.home
   gather_facts: false
   become: true
   tasks:

@@ -1,6 +1,6 @@
 ---
 - name: Install postgreSQL
-  hosts: PostgreSQLDBReplica
+  hosts: bareos.pve.zooloo.home
   remote_user: root
 
   tasks:
