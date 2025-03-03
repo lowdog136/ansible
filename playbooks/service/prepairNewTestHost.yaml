@@ -1,6 +1,6 @@
 ---
 - name: Prepair new test host after Install
-  hosts: PostgreSQLDBReplica
+  hosts: restore-bareos
   remote_user: root
 
   tasks:

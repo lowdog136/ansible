@@ -1,0 +1,23 @@
+---
+- name: Install bareos in new client
+  hosts: restore-bareos
+  remote_user: root
+  vars_files: /home/zooloo/Dropbox/andibleGitHub/ansible/vars/mariaDB/grepMail.yml
+
+  tasks:
+  - name: Update system
+    ansible.builtin.blockinfile:
+      path: /home/hd/text.txt
+      insertafter: "row 1"
+      marker: "# text here. Row 1"
+      block: |
+        Match User ansible-agent
+        PasswordAuthentication no
+
+  - name: Insert/Update Row 3
+    ansible.builtin.blockinfile:
+      path: /home/hd/text.txt
+      insertafter: "row 3"
+      marker: "# text here. Row 3"
+      block: |
+        This is text after row 3
